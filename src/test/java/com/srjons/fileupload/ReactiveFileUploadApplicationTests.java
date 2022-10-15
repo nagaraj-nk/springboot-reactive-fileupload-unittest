@@ -41,7 +41,7 @@ class ReactiveUploadApplicationTests {
 	@Test
 	@Order(1)
 	void reactiveUploadTest() throws Exception {
-		File exampleFile = new File(
+		File file = new File(
 				this.getClass()
 						.getClassLoader()
 						.getResource("test.txt")
@@ -50,7 +50,7 @@ class ReactiveUploadApplicationTests {
 		webTestClient.post()
 				.uri("/file/upload")
 				.contentType(MediaType.MULTIPART_FORM_DATA)
-				.body(BodyInserters.fromMultipartData(fromFile(exampleFile)))
+				.body(BodyInserters.fromMultipartData(fromFile(file)))
 				.exchange()
 				.expectStatus().isOk()
 				.expectBody(String.class)
